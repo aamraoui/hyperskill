@@ -1,15 +1,3 @@
-### Description
-Now it's time to make our project user-friendly. In this final stage, you'll make your software ready for the zoo staff to use. Your program should understand the habitat numbers, show the animals, and be able to work continuously without having to be restarted.
-
-Objectives
-Your tasks at this point:
-
-Your program should repeat the behavior from the previous stage, but now in a loop.
-
-Do not forget to include an exit opportunity: inputting exit should end the program.
-
-When the program is done running, it should print: See you later!
-
 camel = r"""
 Switching on the camera in the camel habitat...
  ___.-''''-.
@@ -134,8 +122,6 @@ It looks like we will soon have more rabbits!"""
 
 animals = [camel, lion, deer, goose, bat, rabbit]
 
-# my code in Python below
-
 while True:
    habitat = input("Please enter the number of the habitat you would like to view:")
    if habitat != 'exit':
@@ -144,7 +130,8 @@ while True:
       print("See you later!")
       break
 
-### result :
+############
+RESULT :
 Please enter the number of the habitat you would like to view: > 3
 
 Switching on the camera in the goose habitat...
