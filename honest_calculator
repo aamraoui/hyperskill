@@ -1,0 +1,74 @@
+msg_0 = "Enter an equation"
+msg_1 = "Do you even know what numbers are? Stay focused!"
+msg_2 = "Yes ... an interesting math operation. You've slept through all classes, haven't you?"
+msg_3 = "Yeah... division by zero. Smart move..."
+msg_4 = "Do you want to store the result? (y / n):"
+msg_5 = "Do you want to continue calculations? (y / n):"
+memory = 0
+
+def algo():
+    print(msg_0)
+    calc = str(input())
+    x, oper, y = calc.split()
+    if x == "M":
+        x = memory
+    elif y == "M":
+        y = memory
+    try:
+        float(x)
+        float(y)
+    except:
+        print(msg_1)
+        return algo()
+
+    if oper not in ('-', '+', '/', '*'):
+        print(msg_2)
+        return store()
+    elif oper is ('+'):
+        result = x + y
+        print(result)
+        return store()
+    elif oper is ('-'):
+        result = x - y
+        print(result)
+        return store()
+    elif oper is ('*'):
+        result = float(x) * float(y)
+        print(result)
+        return store()
+    elif oper is ('/') and float(y) == 0:
+        print(msg_3)
+        return algo()
+    else:
+        result = float(x) / float(y)
+        print(float(result))
+        return store()
+
+def store():
+    while True:
+        result = float
+        memory = float
+        print(msg_4)
+        answer1 = input()
+        if answer1 == "y":
+            memory = result
+            return final()
+        elif answer1 == "n":
+            return final()
+
+def final():
+    while True:
+        print(msg_5)
+        answer2 = input()
+        while True:
+            if answer2 == "y":
+                return algo()
+            elif answer2 == "n":
+                exit()
+
+
+
+
+algo()
+store()
+final()
