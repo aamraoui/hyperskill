@@ -4,71 +4,86 @@ msg_2 = "Yes ... an interesting math operation. You've slept through all classes
 msg_3 = "Yeah... division by zero. Smart move..."
 msg_4 = "Do you want to store the result? (y / n):"
 msg_5 = "Do you want to continue calculations? (y / n):"
+msg_6 = " ... lazy"
+msg_7 = " ... very lazy"
+msg_8 = " ... very, very lazy"
+msg_9 = "You are"
+msg_10 = "Are you sure? It is only one digit! (y / n)"
+msg_11 = "Don't be silly! It's just one number! Add to the memory? (y / n)"
+msg_12 = "Last chance! Do you really want to embarrass yourself? (y / n)"
+result = 0
 memory = 0
 
-def algo():
+def is_one_digit(v):
+    output = False
+
+    if -10 < v < 10 and v.is_integer():
+        output = True
+    return output
+
+
+def check(v1, v2, v3):
+    msg = ""
+    if is_one_digit(v1) and is_one_digit(v2):
+        msg += msg_6
+    if (v1 == 1 or v2 == 1) and v3 == '*':
+        msg += msg_7
+    if (v1 == 0 or v2 == 0) and (v3 == '*' or v3 == '+' or v3 == '-'):
+        msg += msg_8
+    if msg != "":
+        msg = msg_9 + msg
+        print(msg)
+
+
+
+
+while 1:
     print(msg_0)
-    calc = str(input())
+    calc = input()
     x, oper, y = calc.split()
-    if x == "M":
+    if x == 'M':
         x = memory
-    elif y == "M":
-        y = memory
-    try:
-        float(x)
-        float(y)
-    except:
-        print(msg_1)
-        return algo()
-
-    if oper not in ('-', '+', '/', '*'):
-        print(msg_2)
-        return store()
-    elif oper is ('+'):
-        result = x + y
-        print(result)
-        return store()
-    elif oper is ('-'):
-        result = x - y
-        print(result)
-        return store()
-    elif oper is ('*'):
-        result = float(x) * float(y)
-        print(result)
-        return store()
-    elif oper is ('/') and float(y) == 0:
-        print(msg_3)
-        return algo()
     else:
-        result = float(x) / float(y)
-        print(float(result))
-        return store()
-
-def store():
-    while True:
-        result = float
-        memory = float
+        if y == 'M':
+            y = memory
+    try:
+        x = float(x)
+        y = float(y)
+    except ValueError:
+        print(msg_1)
+        continue
+    if oper not in "+-*/":
+        print(msg_2)
+    else:
+        check(x, y, oper)
+        if oper == '+':
+            result = x + y
+        elif oper == '-':
+            result = x - y
+        elif oper == '*':
+            result = x * y
+        else:
+            try:
+                result = x / y
+            except ZeroDivisionError:
+                print(msg_3)
+                continue
+    print(result)
+    while 1:
         print(msg_4)
-        answer1 = input()
-        if answer1 == "y":
+        answer = input()
+        if answer != 'y':
+            if answer != 'n':
+                continue
+        else:
             memory = result
-            return final()
-        elif answer1 == "n":
-            return final()
-
-def final():
-    while True:
+        break
+    while 1:
         print(msg_5)
-        answer2 = input()
-        while True:
-            if answer2 == "y":
-                return algo()
-            elif answer2 == "n":
-                exit()
-
-
-
-
-algo()
-store()
-final()
+        answer = input()
+        if answer != 'y':
+            if answer != 'n':
+                continue
+        break
+    if answer == 'n':
+        break
