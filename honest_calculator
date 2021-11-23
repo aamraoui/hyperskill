@@ -34,17 +34,13 @@ def check(v1, v2, v3):
         msg = msg_9 + msg
         print(msg)
 
-
-
-
 while 1:
     print(msg_0)
     calc = input()
     x, oper, y = calc.split()
     if x == 'M':
         x = memory
-    else:
-        if y == 'M':
+    if y == 'M':
             y = memory
     try:
         x = float(x)
@@ -69,15 +65,41 @@ while 1:
                 print(msg_3)
                 continue
     print(result)
-    while 1:
+    while True:
         print(msg_4)
         answer = input()
-        if answer != 'y':
-            if answer != 'n':
-                continue
+        if answer == 'y':
+
+            if is_one_digit(result):
+                msg_index = 10
+                while True:
+                    if msg_index == 10:
+                        print(msg_10)
+                    elif msg_index == 11:
+                        print(msg_11)
+                    if msg_index == 12:
+                        print(msg_12)
+                    answer = input()
+                    if answer == 'y':
+                        if msg_index < 12:
+                            msg_index = msg_index + 1
+                            continue
+                        else:
+                            memory = result
+                            break
+                    else:
+                        if answer == 'n':
+                            break
+                        else:
+                            continue
+            else:
+                memory = result
+
+            break
         else:
-            memory = result
-        break
+            if answer == 'n':
+                break
+
     while 1:
         print(msg_5)
         answer = input()
